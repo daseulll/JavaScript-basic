@@ -1,0 +1,4 @@
+[
+	{"id":"마틸다", "msg":"여기서라면 우린 괜찮을거예요."},
+	{"id":"명언", "msg":"Better late than never."}
+]

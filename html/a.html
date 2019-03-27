@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form method="GET" action="b.html" id="form1"
+	onsubmit="console.log('from tag'); return false;">
+	<!-- return false는 submit과 action이 리턴되는 것을 중단하고 js 스크립트가 실행되도록 한다. -->
+
+		이름 : <input type="text" name="id"><br>
+		메세지 : <input type="text" name="msg" onkeydown="return false;"><br>
+		<input type="submit">
+		
+	</form>
+	<script>
+		var t = document.getElementById('form1');
+		t.onsubmit = function a(){
+			console.log('from property');
+			return false;
+		}
+
+		function b(){
+			console.log("from addEventListener");
+			return false;
+		}
+
+		function c(){
+			console.log("from addEventListener-2");
+			return false;
+		}
+
+		t.addEventListener("submit", b);
+		t.addEventListener("submit", c);
+
+		t.removeEventListener("submit", b);
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script>
+		var req = new XMLHttpRequest();
+		req.onreadystatechange = function a(){
+			console.log(this.readyState, this.status);
+			if( this.readyState == 4){
+				console.log(this.response);
+				// 성공적으로 데이터가 수신됐을 때 동작할 코드를 구현
+				var data = JSON.parse(this.response);
+				for( var i in data ){
+					var t = document.getElementById("template").cloneNode(true);
+					// 자식 element까지 복사되어 p 엘리먼트의 모든 내용이 clone된다
+					t.removeAttribute("id");
+					t.children[0].innerText = data[i].id;
+					t.children[1].innerText = data[i].msg;
+					document.body.appendChild(t);
+				} 
+			}
+		}
+		req.open("GET", "./json_data.txt")
+		req.send();
+	</script>
+</head>
+<body>
+	<p id="template">
+		<span class="charset">주인공</span> : <span class="word">명대사</span>
+	</p>
+</body>
+</html>
